@@ -1,47 +1,48 @@
-<pre>{{signUpForm.value | json}}</pre>
-<form [formGroup]="signUpForm">
-    <h1>Registrate</h1>
+<form class="container" [formGroup]="signUpForm">
+    <h1 class="text-secondary text-center">Registrate</h1>
     <fieldset>
-        <legend>Datos de Usuario</legend>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtNombre">Nombre: </label>
-            <input type="text" id="txtNombre" formControlName="nombre" required>
+            <input type="text" class="form-control" id="txtNombre" formControlName="nombre">
             <app-message-errors [controlName]="signUpForm.controls['nombre']" [messages]="nombreMessage"></app-message-errors>
         </div>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtApellidos">Apellidos: </label>
-            <input type="text" id="txtApellidos" formControlName="apellidos" required>
+            <input type="text" class="form-control" id="txtApellidos" formControlName="apellidos">
             <app-message-errors [controlName]="signUpForm.controls['apellidos']" [messages]="apellidosMessage"></app-message-errors>
         </div>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtEdad">Edad: </label>
-            <input type="number" id="txtEdad" value="18" min="18" max="100" formControlName="edad">
+            <input type="number" class="form-control" id="txtEdad" value="18" min="18" max="100" formControlName="edad">
             <app-message-errors [controlName]="signUpForm.controls['edad']" [messages]="edadMessage"></app-message-errors>
         </div>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtDni">Dni: </label>
-            <input type="text" id="txtDni" formControlName="dni" required>
+            <input type="text" class="form-control" id="txtDni" formControlName="dni">
             <app-message-errors [controlName]="signUpForm.controls['dni']" [messages]="dniMessage"></app-message-errors>
         </div>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtCorreo">Correo: </label>
-            <input type="email" id="txtCorreo" formControlName="correo" required>
+            <input type="email" class="form-control" id="txtCorreo" formControlName="correo">
             <app-message-errors [controlName]="signUpForm.controls['correo']" [messages]="correoMessage"></app-message-errors>
         </div>
-        <div>
+        <div class="form-group mb-2">
             <label for="txtContrasena">Contraseña: </label>
-            <input type="password" id="txtContrasena" formControlName="contrasena" required>
+            <input type="password" class="form-control" id="txtContrasena" formControlName="contrasena">
             <app-message-errors [controlName]="signUpForm.controls['contrasena']" [messages]="contrasenaMessage"></app-message-errors>
         </div>
-        <div>
-            <div *ngFor="let rol of roles; let i = index">
-                <input type="checkbox" name="roles" [id]="'chk' + rol.name" [value]="rol.value" formArrayName="roles" (change)="onChkRoles($event)">
-                <label [for]="'chk' + rol.name">{{rol.name}}</label>
+        <div class="form-group mb-2">
+            <div class="form-check" *ngFor="let rol of roles; let i = index">
+                <input type="checkbox" name="roles" class="form-check-input" [id]="'chk' + rol.name" [value]="rol.value" formArrayName="roles" (change)="onChkRoles($event)">
+                <label [for]="'chk' + rol.name" class="form-check-label">{{rol.name}}</label>
             </div>
             <app-message-errors [controlName]="signUpForm.controls['roles']" [messages]="{ required: 'El usuario debe asignar por lo menos 1 rol.' }"></app-message-errors>
         </div>
     </fieldset>
 
-    <button type="submit" [disabled]="signUpForm.invalid">Registrar</button>
-    <a href="/usuario/login">Ya tengo una cuenta.</a>
+    <div class="d-grid gap-3">
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Registrar</button>
+    </div>
+
+    <a href="/usuario/login" class="text-secondary">Ya tengo una cuenta.</a>
 </form>
