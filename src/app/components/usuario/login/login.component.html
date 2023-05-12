@@ -1,0 +1,24 @@
+<form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+    <h1>Ingresar al Sistema</h1>
+    <fieldset>
+        <legend>Datos de Usuario</legend>
+        <div>
+            <label for="txtCorreo">Correo: </label>
+            <input type="email" name="correo" id="txtCorreo" formControlName="correo" required>
+            <app-message-errors [controlName]="loginForm.controls['correo']" [messages]="{
+                required: 'El correo es requerido.',
+                email: 'El correo es invalido.'
+            }"></app-message-errors>
+        </div>
+        <div>
+            <label for="txtContrasena">Contraseña: </label>
+            <input type="password" name="contrasena" formControlName="contrasena" id="txtContrasena" required>
+            <app-message-errors [controlName]="loginForm.controls['contrasena']" [messages]="{
+                required: 'La contrasena es requerida.'
+            }"></app-message-errors>
+        </div>
+    </fieldset>
+
+    <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    <a href="/usuario/signup">Registrarse</a>
+</form>
